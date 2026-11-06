@@ -10,7 +10,7 @@ export default function ScoreCard() {
   return (
     <div className="text-center">
       <h3 className="text-xl font-semibold mb-4">
-        ATS Score: 72%
+        Match Score: 72%
       </h3>
 
       <div className="flex justify-center">

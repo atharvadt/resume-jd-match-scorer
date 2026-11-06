@@ -23,7 +23,7 @@ export default function Dashboard() {
         
         {/* Score */}
         <h2 className="text-2xl font-bold mb-4 text-center">
-          ATS Score: {result.score}%
+          Match Score: {result.score}%
         </h2>
 
         {/* Suggestions */}

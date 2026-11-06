@@ -1,70 +1,165 @@
-# Getting Started with Create React App
+# Resume–JD Match Scorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application that analyzes resumes against job descriptions using Natural Language Processing (NLP), keyword matching, and TF-IDF scoring. It extracts text from PDF resumes, evaluates keyword relevance, and provides a match score along with suggestions for improvement.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+Resume–JD Match Scorer helps users identify how closely their resume aligns with a particular job description. Users can upload a PDF resume, enter a job description, and receive an analysis highlighting missing keywords and potential areas for improvement.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **PDF Resume Upload:** Upload resumes in PDF format.
+- **Text Extraction:** Extract resume content using PDF parsing.
+- **Keyword Matching:** Compare resume keywords against job description keywords.
+- **TF-IDF Scoring:** Apply TF-IDF to calculate keyword relevance.
+- **Match Score:** Generate a combined resume–job description matching score.
+- **Improvement Suggestions:** Identify missing keywords and provide suggestions to improve resume relevance.
+- **Interactive Dashboard:** Display analysis results through a simple dashboard.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+| Category | Technologies |
+|---|---|
+| Frontend | React.js, JavaScript, Tailwind CSS |
+| Backend | Node.js, Express.js |
+| NLP | Natural, Tokenization, TF-IDF |
+| PDF Processing | pdf-parse |
+| File Upload | Multer |
+| Deployment | Render |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Application Workflow
 
-### `npm run build`
+1. User uploads a PDF resume.
+2. User enters the target job description.
+3. The React frontend sends both inputs to the Express backend.
+4. The backend extracts text from the uploaded PDF.
+5. Resume and job description text are converted into tokens.
+6. Relevant keywords are identified and compared.
+7. TF-IDF is used to calculate keyword relevance.
+8. A combined matching score and missing-keyword suggestions are returned.
+9. The frontend displays the results on the dashboard.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Scoring Methodology
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The application uses a weighted scoring approach combining keyword matching and TF-IDF relevance.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Components:**
 
-### `npm run eject`
+- Keyword Matching Score: Measures the proportion of job description keywords found in the resume.
+- TF-IDF Score: Calculates the relevance weights of job description keywords in the resume text.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Final Score:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`Final Score = (0.7 × Keyword Score + 0.3 × TF-IDF Score) × 100`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The result is rounded to the nearest integer and capped at 100.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+*Note: This is a heuristic resume-to-job-description matching score, not an official ATS score or a prediction of hiring success.*
 
-## Learn More
+## Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```text
+resume-jd-match-scorer/
+│
+├── backend/
+│   ├── server.js
+│   ├── package.json
+│   └── package-lock.json
+│
+├── public/
+│   ├── index.html
+│   └── manifest.json
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.js
+│   │   ├── ScoreCard.js
+│   │   └── Suggestions.js
+│   │
+│   ├── pages/
+│   │   ├── Dashboard.js
+│   │   └── Upload.js
+│   │
+│   ├── App.js
+│   └── index.js
+│
+├── package.json
+└── README.md
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Getting Started
 
-### Code Splitting
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Node.js
+- npm
+- Git
 
-### Analyzing the Bundle Size
+### 1. Clone the Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+git clone https://github.com/atharvadt/resume-jd-match-scorer.git
 
-### Making a Progressive Web App
+cd resume-jd-match-scorer
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 2. Install Frontend Dependencies
 
-### Advanced Configuration
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 3. Install Backend Dependencies
 
-### Deployment
+```bash
+cd backend
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 4. Start the Backend
 
-### `npm run build` fails to minify
+```bash
+node server.js
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The backend runs on:
+
+```text
+http://localhost:5000
+```
+
+### 5. Start the Frontend
+
+Open another terminal in the project root directory:
+
+```bash
+npm start
+```
+
+The frontend runs on:
+
+```text
+http://localhost:3000
+```
+
+**Backend Configuration:** The frontend currently sends requests to the deployed Render backend. For local development, update the API endpoint in `src/pages/Upload.js` to `http://localhost:5000/analyze`.
+
+## Future Enhancements
+
+- Improve keyword extraction and semantic matching.
+- Add detailed skill-wise matching analysis.
+- Support additional resume formats.
+- Improve scoring methodology.
+- Enhance dashboard visualizations.
+- Add downloadable analysis reports.
+
+## Author
+
+**Atharva Deepak Thakare**
+
+- GitHub: [@atharvadt](https://github.com/atharvadt)
+- LinkedIn: [@atharvadt](https://www.linkedin.com/in/atharvadt)
+
+---
+
+*Built using React.js, Node.js, Express.js, and Natural Language Processing.*

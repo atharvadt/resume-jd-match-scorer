@@ -2,7 +2,7 @@ export default function Suggestions() {
   return (
     <div className="text-left">
       <h3 className="text-xl font-semibold mb-4">
-        AI Suggestions
+        Improvement Suggestions
       </h3>
 
       <ul className="space-y-2">

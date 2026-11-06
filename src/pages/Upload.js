@@ -41,7 +41,7 @@ export default function Upload() {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white flex flex-col items-center justify-center p-6">
       
-      <h1 className="text-3xl font-bold mb-6">AI Resume Analyzer</h1>
+      <h1 className="text-3xl font-bold mb-6">Resume–JD Match Scorer</h1>
 
       {/* 🔥 Job Description Input */}
       <textarea
